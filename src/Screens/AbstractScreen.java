@@ -8,16 +8,18 @@ import javafx.scene.layout.VBox;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
-import java.util.Map;
+
 
 public abstract class AbstractScreen {
-    protected Scene scene;
-    protected VBox vbox;
+
+    //Class abstracte pour les different screens
+    protected Scene scene; // scene base
+    protected VBox vbox; // Vbox base pour l'scene
     protected final int screenHeight;
     protected final int screenWidth;
-    protected Dictionary<String, Button> btns;
-    protected Dictionary<Integer, TextField> txts;
-    protected Label messageErreur;
+    protected Dictionary<String, Button> btns; //dic de bouttons
+    protected Dictionary<Integer, TextField> txts; //dic de textfields
+    protected Label messageErreur; // message d'erreur qui est seulemnt afficher quand il y a un erreur
 
 
     public AbstractScreen(){

@@ -6,19 +6,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-
 import java.util.Dictionary;
-import java.util.Map;
 
 public class LogIn extends AbstractScreen{
 
+    //constructeur
     public LogIn(){
         create();
         this.scene = new Scene(this.vbox);
     }
 
+
+    // Getters
     @Override
     public Scene getScene() {
         return this.scene;
@@ -36,8 +38,12 @@ public class LogIn extends AbstractScreen{
         return this.btns;
     }
 
+
+
+    // Create touts les éléments nécrsaires
     @Override
     public void create() {
+
         // Labels
         Label lbl1 = new Label("Nom d'utilisateur");
 
@@ -53,6 +59,10 @@ public class LogIn extends AbstractScreen{
 
         Button signInButton = new Button("S'inscrire");
         this.btns.put("si", signInButton);
+
+        HBox buttons = new HBox(logInButton, signInButton);
+        buttons.setAlignment(Pos.CENTER);
+        buttons.setSpacing(8);
 
         //Fields
         TextField userField = new TextField();
@@ -74,8 +84,7 @@ public class LogIn extends AbstractScreen{
                 userField,
                 lbl2,
                 passwordField,
-                logInButton,
-                signInButton,
+                buttons,
                 this.messageErreur
         );
 

@@ -3,6 +3,7 @@ package Screens;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -11,17 +12,21 @@ import java.util.Map;
 
 public class SignIn extends AbstractScreen{
 
-    private ToggleGroup rbGroup;
+    // éléments specifiques qui autres objets ont besoin
     private Spinner<Integer> spinner;
     private CheckBox cb;
     private RadioButton[] radioButtons;
 
+
+    // Constructeur
     public SignIn(){
 
         create();
         this.scene = new Scene(this.vbox);
     }
 
+
+    // Getters
     public Scene getScene() {
         return this.scene;
     }
@@ -47,6 +52,8 @@ public class SignIn extends AbstractScreen{
         return this.btns;
     }
 
+
+    // Create les éléments
     @Override
     public void create() {
         //Labels
@@ -58,17 +65,22 @@ public class SignIn extends AbstractScreen{
         Label lbl6 = new Label("Genre");
         Label lbl7 = new Label("Age");
 
-        this.messageErreur = new Label();
+        this.messageErreur = new Label(); //initialiser le message d'erreur
         this.messageErreur.setTextFill(Color.RED);
         this.messageErreur.setOpacity(0);
 
         //Buttons
         Button btn1 = new Button("S'inscrire");
         this.btns.put("ins", btn1);
+
         Button btn2 = new Button("Effacer");
         this.btns.put("ef", btn2);
+
         Button btn3 = new Button("Retour");
         this.btns.put("ret", btn3);
+
+        HBox buttons = new HBox(btn1,btn2,btn3);
+        buttons.setSpacing(8);
 
         //Fields
         TextField textField1 = new TextField();
@@ -84,7 +96,7 @@ public class SignIn extends AbstractScreen{
         TextField textField3 = new TextField();
         textField3.setPromptText("Nom d'utilisateur");
         textField3.setMaxWidth(screenWidth/4);
-        this.txts.put(0, textField3);
+        this.txts.put(0, textField3); // le nom d'utilisateur est idexé au 0 pour chequer plus facilement dans le file
 
         PasswordField passwordField1 = new PasswordField();
         passwordField1.setPromptText("Mot de passe");
@@ -97,26 +109,29 @@ public class SignIn extends AbstractScreen{
         this.txts.put(4, passwordField2);
 
         //Spinner
-        this.spinner = new Spinner<>(0,99,18);
+        this.spinner = new Spinner<>(1,99,18);
 
         //checkbox
         this.cb = new CheckBox("J'accepte Les conditions");
 
         //Radio Buttons
-        this.rbGroup = new ToggleGroup();
-        radioButtons = new RadioButton[3];
+        ToggleGroup rbGroup = new ToggleGroup();
+
+        this.radioButtons = new RadioButton[3];
 
         RadioButton rb1 = new RadioButton("Homme");
-        rb1.setToggleGroup(this.rbGroup);
-        radioButtons[0] = rb1;
-        RadioButton rb2 = new RadioButton("Femme");
-        rb2.setToggleGroup(this.rbGroup);
-        radioButtons[1] = rb2;
-        RadioButton rb3 = new RadioButton("Autre");
-        rb3.setToggleGroup(this.rbGroup);
-        radioButtons[2] = rb3;
+        rb1.setToggleGroup(rbGroup);
+        this.radioButtons[0] = rb1;
 
-        //
+        RadioButton rb2 = new RadioButton("Femme");
+        rb2.setToggleGroup(rbGroup);
+        this.radioButtons[1] = rb2;
+
+        RadioButton rb3 = new RadioButton("Autre");
+        rb3.setToggleGroup(rbGroup);
+        this.radioButtons[2] = rb3;
+
+        // Vbox
         VBox signInVox = new VBox(8);
         signInVox.setMinSize(screenWidth, screenHeight * 1.20);
         signInVox.setAlignment(Pos.CENTER);
@@ -139,9 +154,7 @@ public class SignIn extends AbstractScreen{
                 lbl7,
                 this.spinner,
                 this.cb,
-                btn1,
-                btn2,
-                btn3,
+                buttons,
                 this.messageErreur
                 );
 

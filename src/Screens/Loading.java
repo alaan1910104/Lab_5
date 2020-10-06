@@ -6,18 +6,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.util.Dictionary;
-import java.util.Map;
 
 public class Loading extends AbstractScreen{
 
+    //Constructeur
     public Loading(){
         create();
         this.scene = new Scene(this.vbox);
-}
+    }
 
+
+    //Getters
     public Scene getScene() {
         return this.scene;
     }
@@ -29,6 +30,8 @@ public class Loading extends AbstractScreen{
         return this.btns;
     }
 
+
+    // Create les éléments
     @Override
     public void create() {
         // progress
